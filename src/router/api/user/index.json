@@ -1,0 +1,26 @@
+{
+    "get": {
+        "response": {
+            "id": 123
+        }
+    },
+    "post": {
+        "request": {
+            "id": 1,
+            "username": "hello",
+            "password": "123@@",
+            "comment": {
+                "id": 1,
+                "body": "sdflkjasdfj",
+                "detail": {
+                    "id": 1,
+                    "t": "d"
+                }
+            }
+        },
+        "response": {
+            "id": 123,
+            "sdf": "bobodydydy"
+        }
+    }
+}

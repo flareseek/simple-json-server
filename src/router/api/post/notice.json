@@ -1,0 +1,13 @@
+{
+    "get": {
+        "response": {
+            "id": 1,
+            "title": "Notice Title ",
+            "body": "Body Booooya",
+            "comment": {
+                "id": 2,
+                "author": 12
+            }
+        }
+    }
+}

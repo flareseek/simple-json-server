@@ -1,0 +1,12 @@
+{
+    "get": {
+        "request": {
+            "id": 123,
+            "username": "username"
+        },
+        "response": {
+            "status": "200",
+            "usernickname": "Booya"
+        }
+    }
+}
