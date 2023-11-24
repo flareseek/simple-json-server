@@ -19,11 +19,11 @@ function generateUrl(url, filePath) {
                 errorCode.push(errorMsg);
                 console.log(errorMsg);
             });
-            if (errorCode.length !== 0) res.status(400).send(errorCode.join("\n"));
+            if (errorCode.length !== 0) res.status(400).send(errorCode.join("<br>"));
             else res.json(json[method].response);
         });
+        console.log(`binding [${method.toUpperCase()}]`, url);
     }
-    console.log("binding ", url);
 }
 
 function checkKeys(origin, target, undefinedCb, ...trace) {
@@ -73,5 +73,5 @@ function findFile(urlDepth = []) {
 findFile();
 
 app.listen(port, () => {
-    console.log(`http://localhost:${port}`);
+    console.log(`Server is running on http://localhost:${port}`);
 })
