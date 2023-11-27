@@ -7,6 +7,9 @@ router/api/user/index.json => "/api/user"<br>
 router/api/user/info.json => "/api/user/info"<br>
 router/api/post/notice.json => "/api/post/notice"<br>
 <br>
+route parameters가 필요할 경우 {name} 형식으로 작성하면 됩니다. <br>
+예) router/api/user/{userId}/{id}.json => "/api/user/:userId/:id" <br>
+<br>
 json 작성 방법입니다. <br>
 <br>
 ```json
