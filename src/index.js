@@ -74,7 +74,16 @@ function findFile(urlDepth = []) {
 
         for(const fileName of fileNames) {
             const filePath = path.join(childFolderPath, `${fileName}.json`);
-            const url = `/${folderDepth.reduce((prev, curr) => `${prev}/${curr}`)}${fileName === "index" ? "" : `/${fileName}`}`
+            const pathName = (name) => {
+                if (name.startsWith("{") && name.endsWith("}"))
+                    return `:${name.substring(1, name.length-1)}`;
+                return name;
+            }
+            const endName = (name) => {
+                if (name === "index") return "";
+                return `/${pathName(name)}`;
+            }
+            const url = `/${folderDepth.reduce((prev, curr) => `${prev}/${pathName(curr)}`)}${endName(fileName)}`;
             generateUrl(url, filePath);
         }
         findFile(folderDepth);
