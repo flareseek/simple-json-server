@@ -27,15 +27,20 @@ function generateUrl(url, filePath) {
 function checkKeys(origin, target, cb, ...trace) {
     const keys = Object.keys(origin);
     for(const key of keys) {
-        if (target[key] === undefined || target[key] === null) {
+        if (target[key] === undefined) {
             const msg = `\"${[...trace, key].join(".")}\" not found. (Type: ${typeof(origin[key])})`;
-            console.log(msg);
+            console.error(msg);
             cb(msg);
+            continue;
+        }
+        if (target[key] === null) {
+            const msg = `[Warning] \"${[...trace, key].join(".")}\" is null (Type: ${typeof(origin[key])})`;
+            console.error(msg);
             continue;
         }
         if (typeof origin[key] !== typeof target[key]) {
             const msg = `\"${[...trace, key].join(".")}\" is not a ${typeof origin[key]}`;
-            console.log(msg);
+            console.error(msg);
             cb(msg);
             continue;
         }
