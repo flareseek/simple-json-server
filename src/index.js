@@ -12,12 +12,10 @@ function generateUrl(url, filePath) {
     const json = JSON.parse(file);
 
     for(const method in json) {
-        app[method](url, (req, res) => {
+        app[method.toLowerCase()](url, (req, res) => {
             const errorCode = [];
-            if (json[method].request) checkKeys(json[method].request, req.body, (key) => {
-                const errorMsg = key.join(".") + " Not found.";
-                errorCode.push(errorMsg);
-                console.log(errorMsg);
+            if (json[method].request) checkKeys(json[method].request, req.body, (msg) => {
+                errorCode.push(msg);
             });
             if (errorCode.length !== 0) res.status(400).send(errorCode.join("<br>"));
             else res.json(json[method].response);
@@ -26,15 +24,23 @@ function generateUrl(url, filePath) {
     }
 }
 
-function checkKeys(origin, target, undefinedCb, ...trace) {
+function checkKeys(origin, target, cb, ...trace) {
     const keys = Object.keys(origin);
     for(const key of keys) {
-        if (!target[key]) {
-            undefinedCb([...trace, key]);
+        if (target[key] === undefined || target[key] === null) {
+            const msg = `\"${[...trace, key].join(".")}\" not found. (Type: ${typeof(origin[key])})`;
+            console.log(msg);
+            cb(msg);
+            continue;
+        }
+        if (typeof origin[key] !== typeof target[key]) {
+            const msg = `\"${[...trace, key].join(".")}\" is not a ${typeof origin[key]}`;
+            console.log(msg);
+            cb(msg);
             continue;
         }
         if (typeof origin[key] === 'object') {
-            checkKeys(origin[key], target[key], undefinedCb, ...trace, key);
+            checkKeys(origin[key], target[key], cb, ...trace, key);
         }
     }
 }
