@@ -41,7 +41,7 @@ json 작성 방법입니다. <br>
 해당 request method 에는 request와 response가 포함 될 수 있습니다.<br>
 request의 값은 요청받을 값의 샘플입니다.<br>
 simple-json-server에서 request에 작성된 json 형태를 확인하여 프론트에서 보낸 정보의 key값들과 request에 작성된 key값들을 비교하여 빠진 요청이 있는지 확인합니다. <br>
-이때 key값만 확인하고 value는 확인하지 않습니다.<br>
+이때 key값과 value의 type만 확인하고 value값은 확인하지 않습니다.<br>
 <br>
 response 값은 request가 정상 요청되었다면 반환될 값입니다.
 
